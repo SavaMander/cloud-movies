@@ -1,0 +1,16 @@
+<div class="feed-container">
+    <div class="feed-content">
+      <section class="feed-section">
+        <h2 class="section-title"><b>Recommended</b></h2>
+        <div class="section-content">
+          <mat-card *ngFor="let item of items" class="feed-item" [routerLink]="['/movie-page', item.title]">
+            <img mat-card-image src="..\..\assets\photos\movie.png" alt="{{ item.title }}">
+            <mat-card-content>
+              <h3><b>{{ item.title }}</b></h3>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+    </div>
+  </div>
+  

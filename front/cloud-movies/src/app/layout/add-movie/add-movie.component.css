@@ -1,0 +1,36 @@
+#add-movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 900px;
+    background-color: #141414;
+  }
+
+  #movie-form {
+    margin-top: 1.5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  mat-form-field {
+    width: 30%;
+  }
+
+  mat-select {
+    width: 30%;
+    background-color: white;
+  }
+
+  #genres {
+    margin-top: 1.5%;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+  }
+  

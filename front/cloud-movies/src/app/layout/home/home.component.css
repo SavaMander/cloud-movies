@@ -1,0 +1,50 @@
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #141414;
+    height: 100%;
+    color: #fff;
+  }
+  
+  .feed-content {
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  .feed-section {
+    margin: 3% 0;
+  }
+  
+  .section-title {
+    margin-left: 0.5%;
+  }
+  
+  .section-content {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .feed-item {
+    margin: 10px;
+    flex: 0 0 auto;
+    background-color: #3c3c3c;
+    color: #fff;
+    width: 20%;
+    cursor: pointer;
+  }
+  
+  .feed-item img {
+    height: 350px;
+    object-fit: cover;
+  }
+
+  .feed-item mat-card-content {
+    margin-top: 5%;
+  }
+
+  .feed-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  }
+  

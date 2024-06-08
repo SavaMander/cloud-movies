@@ -1,0 +1,31 @@
+<div id="add-movie-container">
+      <span style="color: white; font-size: 20px;"><b>INFO</b></span>
+      <form id="movie-form" [formGroup]="movieForm">
+        <mat-form-field class="form-field">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Enter movie title" formControlName="title">
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Write a description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Actors</mat-label>
+          <input matInput placeholder="Add actors" formControlName="actors">
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Director</mat-label>
+          <input matInput placeholder="Add director"  formControlName="director">
+        </mat-form-field>
+        <span>UPLOAD MOVIE PICTURE</span>
+        <input style="margin-top: 1%; margin-left: 5%;" type="file" formControlName="moviePicture" (change)="onPhotoChange($event)">
+        <mat-label style="margin-top: 1%;"><b>SELECT GENRES</b></mat-label>
+        <span formControlName="genres" multiple required id="genres">
+          <mat-checkbox *ngFor="let genre of genres" [value]="genre" (change)="onCheckboxChange($event)">{{ genre }}</mat-checkbox>
+        </span>
+        <span style="margin-top: 1%;">UPLOAD MOVIE FILE</span>
+        <input style="margin-top: 1%; margin-left: 5%;" type="file" formControlName="movieFile" (change)="onFileChange($event)">
+        <button mat-flat-button style="margin-top: 3%;" (click)="onSubmit()">Add new movie</button>
+    </form>
+</div>
+  

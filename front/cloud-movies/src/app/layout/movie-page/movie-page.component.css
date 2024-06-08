@@ -1,0 +1,62 @@
+#main {
+    background-color: #141414;
+    width: 100%;
+    height: 900px;
+}
+
+#title {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 1%;
+    margin-left: 9%;
+}
+
+#div2 {
+    height: 70%;
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    max-height: 500px;
+}
+
+#video {
+    background-color: gray;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vd {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#info {
+    width: 30%;
+    height: 100%;
+}
+
+#desc-text {
+    margin-left: 3%;
+}
+
+#add-info {
+    margin-left: 3%;
+}
+
+#download-btn {
+    margin-left: 2%;
+}
+
+#file-info {
+   background-color: #3c3c3c;
+   width: 62%;
+   padding: 1%;
+}
+
+#div3 {
+    margin-left: 10%;
+}

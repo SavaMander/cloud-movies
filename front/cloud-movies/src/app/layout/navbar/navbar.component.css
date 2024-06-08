@@ -1,0 +1,23 @@
+#logo {
+    margin-left: 10%;
+    font-family: Impact, fantasy;
+    font-style:oblique;
+    color: white;
+    display: flex;
+    margin-top: 1%;
+    gap: 20px;
+    cursor: pointer;
+}
+
+#toolbar {
+    background-color: #3c3c3c;
+    display: flex;
+    gap: 10%;
+}
+
+
+#search {
+    padding: 8px;
+    border-radius: 10px;
+    min-width: 50%;
+}
