@@ -9,15 +9,43 @@
     cursor: pointer;
 }
 
+#search-div {
+    width: 70%;
+    display: flex;
+}
+
+#adv-search {
+    justify-content: center;
+    align-items: center;
+    padding-left: 4%;
+}
+
+#btns-div {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #toolbar {
     background-color: #3c3c3c;
     display: flex;
     gap: 10%;
 }
 
-
 #search {
     padding: 8px;
-    border-radius: 10px;
-    min-width: 50%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 70%;
+    margin-right: 3%;
+    border-color: black;
+    border-width: 1px;
+}
+
+#select {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 8px;
+    border-width: 1px;
 }

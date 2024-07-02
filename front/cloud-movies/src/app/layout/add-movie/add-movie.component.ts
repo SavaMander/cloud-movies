@@ -22,7 +22,6 @@ export class AddMovieComponent {
     actors: new FormControl('', Validators.required),
     director: new FormControl('', Validators.required),
     genres: new FormArray([], Validators.required),
-    moviePicture: new FormControl(null, Validators.required),
     movieFile: new FormControl(null, Validators.required)
   });
 
@@ -63,7 +62,7 @@ export class AddMovieComponent {
   }
 
   onSubmit(): void {
-    if (this.movieForm.valid && this.selectedFile && this.selectedPhoto) {
+    if (this.movieForm.valid && this.selectedFile) {
       const genresString = Array.isArray(this.movieForm.value.genres) ? this.movieForm.value.genres.join(',') : '';
       let date = new Date(this.selectedFile.lastModified).toDateString();
       const movieRequest: MovieRequest = {

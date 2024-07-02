@@ -1,0 +1,23 @@
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 900px;
+    background-color: #141414;
+}
+
+#subscribe-div {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+#sub-input-div {
+    gap: 5%;
+    display: flex;
+}
+
+#sub-input {
+    border-radius: 10px;
+    width: 80%;
+}

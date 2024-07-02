@@ -6,12 +6,18 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { RouterModule } from '@angular/router';
 import { MoviePageComponent } from './movie-page/movie-page.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { SubscriptionPageComponent } from './subscription-page/subscription-page.component';
 @NgModule({
   declarations: [
     HomeComponent,
     NavbarComponent,
     AddMovieComponent,
-    MoviePageComponent
+    MoviePageComponent,
+    SearchComponent,
+    SearchResultsComponent,
+    SubscriptionPageComponent
   ],
   imports: [
     CommonModule,

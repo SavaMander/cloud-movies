@@ -17,8 +17,6 @@
           <mat-label>Director</mat-label>
           <input matInput placeholder="Add director"  formControlName="director">
         </mat-form-field>
-        <span>UPLOAD MOVIE PICTURE</span>
-        <input style="margin-top: 1%; margin-left: 5%;" type="file" formControlName="moviePicture" (change)="onPhotoChange($event)">
         <mat-label style="margin-top: 1%;"><b>SELECT GENRES</b></mat-label>
         <span formControlName="genres" multiple required id="genres">
           <mat-checkbox *ngFor="let genre of genres" [value]="genre" (change)="onCheckboxChange($event)">{{ genre }}</mat-checkbox>

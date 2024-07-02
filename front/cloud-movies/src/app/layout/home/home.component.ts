@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class HomeComponent implements OnInit {
   items: any[] = [];
 
-  constructor(private moviesService: MoviesService, private router: Router) {}
+  constructor(private moviesService: MoviesService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.moviesService.getAllMovies().subscribe({
@@ -22,6 +22,6 @@ export class HomeComponent implements OnInit {
       error: (err: any) => {
         console.error('Error fetching movies:', err);
       }
-    });
-  }
+  });
+}
 }

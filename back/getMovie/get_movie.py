@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         # Get the item from the table
         response = table.get_item(
             Key={
-                'title': title
+                'id': title
             }
         )
         

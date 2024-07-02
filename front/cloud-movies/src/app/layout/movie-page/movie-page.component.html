@@ -3,7 +3,7 @@
     <div id="div2">
         <div id="video" style="width: 100%; height: 100%;">
             <video id="vd" controls>
-                <source src="..\..\assets\photos\Inception (2010).mp4" type="video/mp4">
+                <source src="..\..\assets\photos\movie.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
         </div>
@@ -20,8 +20,9 @@
             <p>{{movie.genres}}</p>
             </div>
             </div>
-            <div style="height: 10%; display: flex; justify-content: center;">
+            <div style="height: 10%; display: flex; justify-content: center; gap: 3%;">
             <button mat-flat-button id="download-btn" (click)="onDownload()"><mat-icon>download</mat-icon>Download</button>
+            <button mat-flat-button id="delete-btn" (click)="onDelete()"><mat-icon>delete</mat-icon>Delete</button>
             </div>
         </div>
     </div>

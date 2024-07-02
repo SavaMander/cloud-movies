@@ -1,7 +1,7 @@
 <div class="feed-container">
     <div class="feed-content">
       <section class="feed-section">
-        <h2 class="section-title"><b>Recommended</b></h2>
+        <h2 class="section-title"><b>Search results</b></h2>
         <div class="section-content">
           <mat-card *ngFor="let item of items" class="feed-item" [routerLink]="['/movie-page', item.id]">
             <img mat-card-image src="..\..\assets\photos\movie.png" alt="{{ item.title }}">

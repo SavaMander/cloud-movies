@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesService } from 'src/app/services/movies.service';
 
@@ -10,7 +11,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MoviePageComponent implements OnInit {
   title: any;
   movie: any;
-  constructor(private moviesService: MoviesService,private route: ActivatedRoute) {}
+  constructor(private moviesService: MoviesService,private route: ActivatedRoute, private router:Router, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -43,5 +44,15 @@ export class MoviePageComponent implements OnInit {
         }
       }
     })
+  }
+
+  onDelete() {
+    this.moviesService.deleteMovie(this.title).subscribe({
+      next: (response: any ) => {
+        console.log(response);
+      }
+    }
+    );
+    this.router.navigate(["/home"]);
   }
 }

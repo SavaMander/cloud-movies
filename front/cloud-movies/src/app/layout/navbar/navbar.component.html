@@ -1,5 +1,16 @@
 <mat-toolbar color="primary" id="toolbar">
     <span id="logo"><mat-icon style="transform: scale(2);">local_movies</mat-icon><p>KINOTEKA</p></span>
-    <input placeholder="Search" id="search">
-    <button mat-flat-button id="upload-button" routerLink="/add-movie">Upload</button>
+    <div id="search-div">
+        <select id="select" #selectElement>
+            <option value="title">Title</option>
+            <option value="description">Description</option>
+            <option value="actor">Actor</option>
+            <option value="director">Director</option>
+            <option value="genre">Genre</option>
+        </select>
+        <input placeholder="Search" id="search" [(ngModel)]="searchValue" (keyup.enter)="onSearch()">
+    </div>
+    <div id="btns-div">
+        <button mat-flat-button id="upload-button" routerLink="/add-movie" *ngIf="user == 'savke542'">Upload</button>
+    </div>
 </mat-toolbar>
