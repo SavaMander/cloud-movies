@@ -9,6 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
 sns_client = boto3.client('sns', region_name='eu-central-1')
 cognito_client = boto3.client('cognito-idp', region_name='eu-central-1')
+
 DYNAMODB_TABLE_NAME = 'Movies'
 ACTORS_TABLE_NAME = 'Actors'
 GENRES_TABLE_NAME = 'Genres'
@@ -34,7 +35,7 @@ def get_user_email_by_username(username):
         print(f"An error occurred while retrieving user email: {e}")
     return None
 
-def publish_to_sns(subject,topic_arn, message, email):
+def publish_to_sns(subject, topic_arn, message, email):
     response = sns_client.publish(
         TopicArn=topic_arn,
         Subject=subject,
@@ -46,7 +47,7 @@ def publish_to_sns(subject,topic_arn, message, email):
             }
         }
     )
-        
+
 def notify_users(title, actors, director, genres):
     subscription_table = dynamodb.Table(SUBSCRIPTIONS_TABLE_NAME)
     actors_array = [actor.strip() for actor in actors.split(',')]
@@ -59,7 +60,7 @@ def notify_users(title, actors, director, genres):
         response = subscription_table.query(
             IndexName="subscription-index",
             KeyConditionExpression=Key('subscription').eq(value)
-            ) 
+        ) 
         for res in response['Items']:
             username = res['username']
             if username not in subscribers:
@@ -73,7 +74,15 @@ def notify_users(title, actors, director, genres):
             for subscription in subscriptions:
                 message += f"\n- {subscription}"
             publish_to_sns("New movie!", TOPIC_ARN, message, email)
-        
+
+def update_personalized_feeds():
+    lambda_client = boto3.client('lambda', region_name='eu-central-1')
+    response = lambda_client.invoke(
+        FunctionName='personalizedFeed',  # Ensure this matches your function name
+        InvocationType='Event',
+        Payload=json.dumps({})
+    )
+
 def lambda_handler(event, context):
     try:
         print("Received event:", json.dumps(event))
@@ -93,7 +102,7 @@ def lambda_handler(event, context):
     
         table = dynamodb.Table(DYNAMODB_TABLE_NAME)
         item = {
-            'id' : id,
+            'id': id,
             'title': title,
             'description': description,
             'actors': actors,
@@ -113,9 +122,9 @@ def lambda_handler(event, context):
             id2 = str(uuid.uuid4())
             actor_strip = actor.strip()
             actor_item = {
-                "id" : id2,
-                'name' : actor_strip,
-                'movie' : id
+                "id": id2,
+                'name': actor_strip,
+                'movie': id
             }
             actors_table.put_item(Item=actor_item)
             
@@ -125,9 +134,9 @@ def lambda_handler(event, context):
             id3 = str(uuid.uuid4())
             genre_strip = genre.strip()
             genre_item = {
-                "id" : id3,
-                "name" : genre_strip,
-                "movie" : id
+                "id": id3,
+                "name": genre_strip,
+                "movie": id
             }
             genres_table.put_item(Item=genre_item)
         
@@ -137,7 +146,10 @@ def lambda_handler(event, context):
             ExpiresIn=3600
         )
         
-        notify_users(title,actors,director,genres)
+        notify_users(title, actors, director, genres)
+        
+        # Update personalized feeds after notifying users
+        update_personalized_feeds()
 
         return {
             'statusCode': 200,

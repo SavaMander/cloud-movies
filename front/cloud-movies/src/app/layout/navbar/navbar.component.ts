@@ -16,6 +16,7 @@ export class NavbarComponent {
   searchValue: string = '';
   @ViewChild('selectElement')
   selectElement!: ElementRef;
+  private loginUrl = 'https://kinoteka.auth.eu-central-1.amazoncognito.com/login?client_id=7k5pnltnj5n297ii67qoeu31lj&response_type=token&scope=email+openid&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fauth';
 
   constructor(public dialog: MatDialog, private authService: AuthService, private movieService:MoviesService, private router:Router) {
     this.user = authService.getUsername();
@@ -48,5 +49,12 @@ export class NavbarComponent {
     }
     this.movieService.searchMovie(searchRequest);
     this.router.navigate(['/search']);
+  }
+
+  redirectToLogin(): void {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('session');
+    
+    window.location.href = this.loginUrl;
   }
 }

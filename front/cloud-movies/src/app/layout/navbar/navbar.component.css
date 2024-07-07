@@ -27,6 +27,10 @@
     justify-content: center;
 }
 
+#btns-div button {
+    margin-left: 10px;
+}
+
 #toolbar {
     background-color: #3c3c3c;
     display: flex;

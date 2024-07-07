@@ -11,6 +11,8 @@
         <input placeholder="Search" id="search" [(ngModel)]="searchValue" (keyup.enter)="onSearch()">
     </div>
     <div id="btns-div">
+        <!-- <button mat-flat-button id="upload-button" routerLink="/add-movie" *ngIf="user == 'savke542'">Upload</button> -->
         <button mat-flat-button id="upload-button" routerLink="/add-movie" *ngIf="user == 'savke542'">Upload</button>
+        <button mat-flat-button id="logout-button" (click)="redirectToLogin()">Logout</button>
     </div>
 </mat-toolbar>
