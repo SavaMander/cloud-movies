@@ -6,4 +6,11 @@
         <button mat-flat-button (click)="onSubscribe()">Subscribe</button>
         </div>
     </div>
+    <div id="view-subscriptions-div">
+        <h2>View subscriptions (Actor, Director, Genre)</h2>
+        <div *ngFor="let item of subscriptions" class="subscription-item">
+          {{ item }}
+          <button mat-flat-button (click)="onDeleteSubscription(item)">Delete</button>
+        </div>
+    </div>
 </div>

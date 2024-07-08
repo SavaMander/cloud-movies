@@ -71,6 +71,15 @@ export class MoviesService {
     return this.http.post<any>(environment.apiHost+"subscribe",subscriptionRequest);
   }
 
+  getSubscriptions(): Observable<any> {
+    return this.http.get<any>(environment.apiHost+`subscribe?username=${this.username}`);
+  }
+
+  deleteSubscription(subscription: string): Observable<any> {
+    const url = `${environment.apiHost}/subscribe?username=${this.username}&subscription=${subscription}`;
+    return this.http.get<any>(url);
+  }
+
   rateMovie(rating: number, title: string): Observable<any> {
     const body = { rating };
     return this.http.post<any>(`${environment.apiHost}movies/rate/${title}?username=${this.username}`, body);

@@ -21,3 +21,17 @@
     border-radius: 10px;
     width: 80%;
 }
+
+.subscription-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+  }
+
+#view-subscriptions-div button {
+    width: 10px;
+}

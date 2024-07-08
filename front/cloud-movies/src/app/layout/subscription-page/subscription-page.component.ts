@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/infrastructure/auth.service';
 import { SubscriptionRequest } from 'src/app/model/SubscriptionRequest';
@@ -11,9 +11,28 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class SubscriptionPageComponent {
   subscriptionValue: string = "";
+  subscriptions: string[] = [];
 
   constructor(public movieService: MoviesService, private authService: AuthService, private snackbar: MatSnackBar){
 
+  }
+
+  ngOnInit(): void {
+    this.loadSubscriptions();
+  }
+
+  loadSubscriptions(): void {
+    this.movieService.getSubscriptions().subscribe({
+      next: (subscriptions: string[]) => {
+        this.subscriptions = subscriptions;
+      },
+      error: (err) => {
+        console.error('Error loading subscriptions:', err);
+        this.snackbar.open('Failed to load subscriptions. Please try again later.', 'Close', {
+          duration: 3000,
+        });
+      }
+    });
   }
 
   onSubscribe(){
@@ -36,4 +55,21 @@ export class SubscriptionPageComponent {
       }
     })
   }
+
+  onDeleteSubscription(subscription: string) {
+    this.movieService.deleteSubscription(subscription).subscribe({
+      next: (response: any) => {
+        this.snackbar.open('Subscription deleted.', 'Close', {
+          duration: 3000,
+        });
+      },
+      error: (err) => {
+        console.error('Failed to delete subscription:', err);
+        this.snackbar.open('Failed to delete subscription. Please try again later.', 'Close', {
+          duration: 3000,
+        });
+      }
+    });
+  }
+  
 }
