@@ -60,3 +60,13 @@
 #div3 {
     margin-left: 10%;
 }
+
+form {
+    width: 60%;
+    display: grid;
+    justify-content: center;
+}
+
+#rate-btn {
+    margin-top: 3px;
+}

@@ -5,6 +5,7 @@ import { MovieRequest } from '../model/MovieRequest';
 import { environment } from '../env/env';
 import { SearchRequest } from '../model/SearchRequest';
 import { SubscriptionRequest } from '../model/SubscriptionRequest';
+import { AuthService } from '../infrastructure/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ import { SubscriptionRequest } from '../model/SubscriptionRequest';
 export class MoviesService {
   private searchResults = new BehaviorSubject<any[]>([]);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
+  username: string = this.authService.getUsername();
 
   addMovie(movieRequest: MovieRequest): Observable<any> {
     return this.http.post<any>(environment.apiHost+"movies", movieRequest);
@@ -27,6 +29,11 @@ export class MoviesService {
     });
   }
 
+  getMoviesForPersonalizedFeed(): Observable<any> {
+    const apiUrl = `${environment.apiHost}movies/feed?username=${this.username}`;
+    return this.http.get<any>(apiUrl);
+  }
+
   getAllMovies(): Observable<any> {
     return this.http.get<any>(environment.apiHost+"movies");
   }
@@ -36,7 +43,8 @@ export class MoviesService {
   }
 
   downloadMovie(title: string): Observable<any> {
-    return this.http.get<any>(environment.apiHost+"movies/download/"+title);
+    const apiUrl = `${environment.apiHost}movies/download/${title}?username=${this.username}`;
+    return this.http.get<any>(apiUrl);
   }
 
   downloadFileFromS3(presignedURL: string): Observable<Blob> {
@@ -61,5 +69,10 @@ export class MoviesService {
 
   subcribe(subscriptionRequest: SubscriptionRequest): Observable<any> {
     return this.http.post<any>(environment.apiHost+"subscribe",subscriptionRequest);
+  }
+
+  rateMovie(rating: number, title: string): Observable<any> {
+    const body = { rating };
+    return this.http.post<any>(`${environment.apiHost}movies/rate/${title}?username=${this.username}`, body);
   }
 }

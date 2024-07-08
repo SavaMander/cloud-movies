@@ -9,10 +9,32 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class HomeComponent implements OnInit {
   items: any[] = [];
+  
 
   constructor(private moviesService: MoviesService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.moviesService.getMoviesForPersonalizedFeed().subscribe({
+      next: (response: any) => {
+        if (response && response.length > 0) {
+          for (const movie of response) {
+            this.items.push(movie);
+          }
+        } else {
+          // If response is empty
+          console.log("fetchAllMovies");
+
+          this.fetchAllMovies();
+        }
+      },
+      error: (err: any) => {
+        console.error('Error fetching personalized feed movies:', err);
+        this.fetchAllMovies();
+      }
+    });
+  }
+  
+  fetchAllMovies(): void {
     this.moviesService.getAllMovies().subscribe({
       next: (response: any) => {
         for (const movie of response) {
@@ -20,8 +42,9 @@ export class HomeComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        console.error('Error fetching movies:', err);
+        console.error('Error fetching all movies:', err);
       }
-  });
-}
+    });
+  }
+  
 }

@@ -9,6 +9,7 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { SubscriptionPageComponent } from './subscription-page/subscription-page.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,7 +23,8 @@ import { SubscriptionPageComponent } from './subscription-page/subscription-page
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     NavbarComponent

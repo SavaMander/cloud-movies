@@ -11,24 +11,30 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MoviePageComponent implements OnInit {
   title: any;
   movie: any;
-  constructor(private moviesService: MoviesService,private route: ActivatedRoute, private router:Router, private snackbar: MatSnackBar) {}
+  rating: number = 0;
+
+  constructor(
+    private moviesService: MoviesService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.title=params["name"];
+      this.title = params["name"];
       this.moviesService.getMovie(this.title).subscribe({
         next: (response: any) => {
-          this.movie=response.data;
+          this.movie = response.data;
         }
-      })
-    })
+      });
+    });
   }
 
-  onDownload(){
+  onDownload() {
     this.moviesService.downloadMovie(this.title).subscribe({
       next: (response: any) => {
-        console.log(response);
-        if(response.download_url){
+        if (response.download_url) {
           this.moviesService.downloadFileFromS3(response.download_url).subscribe({
             next: (response: Blob) => {
               const url = window.URL.createObjectURL(response);
@@ -40,19 +46,28 @@ export class MoviePageComponent implements OnInit {
               window.URL.revokeObjectURL(url);
               document.body.removeChild(a);
             }
-          })
+          });
         }
       }
-    })
+    });
   }
 
   onDelete() {
     this.moviesService.deleteMovie(this.title).subscribe({
-      next: (response: any ) => {
-        console.log(response);
+      next: (response: any) => {
+        this.router.navigate(['/home']);
       }
-    }
-    );
-    this.router.navigate(["/home"]);
+    });
+  }
+
+  onRate() {
+    this.moviesService.rateMovie(this.rating, this.title).subscribe({
+      next: (response: any) => {
+        this.snackbar.open('Rated successfully!', 'Close', { duration: 3000 });
+      },
+      error: (error: any) => {
+        this.snackbar.open('Error rating the movie.', 'Close', { duration: 3000 });
+      }
+    });
   }
 }

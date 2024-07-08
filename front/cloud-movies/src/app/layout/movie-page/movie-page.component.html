@@ -23,6 +23,11 @@
             <div style="height: 10%; display: flex; justify-content: center; gap: 3%;">
             <button mat-flat-button id="download-btn" (click)="onDownload()"><mat-icon>download</mat-icon>Download</button>
             <button mat-flat-button id="delete-btn" (click)="onDelete()"><mat-icon>delete</mat-icon>Delete</button>
+            <form>
+                <label>Rate the movie</label>
+                <input type="number" id="rate-txt" [(ngModel)]="rating" name="rating" min="1" max="5">
+                <button mat-flat-button id="rate-btn" (click)="onRate()">Rate</button>
+            </form>
             </div>
         </div>
     </div>
