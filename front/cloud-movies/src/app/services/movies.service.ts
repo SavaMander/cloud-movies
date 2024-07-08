@@ -76,7 +76,7 @@ export class MoviesService {
   }
 
   deleteSubscription(subscription: string): Observable<any> {
-    const url = `${environment.apiHost}/subscribe?username=${this.username}&subscription=${subscription}`;
+    const url = `${environment.apiHost}subscribe?username=${this.username}&subscription=${subscription}`;
     return this.http.get<any>(url);
   }
 

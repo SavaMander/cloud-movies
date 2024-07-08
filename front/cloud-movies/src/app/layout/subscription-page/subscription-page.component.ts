@@ -59,6 +59,7 @@ export class SubscriptionPageComponent {
   onDeleteSubscription(subscription: string) {
     this.movieService.deleteSubscription(subscription).subscribe({
       next: (response: any) => {
+        console.log(response);
         this.snackbar.open('Subscription deleted.', 'Close', {
           duration: 3000,
         });

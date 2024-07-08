@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
           for (const movie of response) {
             this.items.push(movie);
           }
+          console.log("feed")
         } else {
           // If response is empty
           console.log("fetchAllMovies");
