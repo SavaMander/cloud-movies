@@ -2,14 +2,15 @@ import json
 import boto3
 from botocore.exceptions import ClientError
 
+
 def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('Movies')
-    
+    table = dynamodb.Table('MoviesCDK')
+
     try:
         response = table.scan()
         data = response['Items']
-        
+
         return {
             'statusCode': 200,
             'body': json.dumps(data),
