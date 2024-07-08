@@ -70,3 +70,11 @@ form {
 #rate-btn {
     margin-top: 3px;
 }
+
+#thumbs-up-btn, #thumbs-down-btn {
+    background-color: #141414;
+}
+
+#thumbs-up-btn:hover, #thumbs-down-btn:hover {
+    background-color: #3c3c3c;
+}

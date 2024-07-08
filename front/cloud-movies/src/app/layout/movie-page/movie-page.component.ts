@@ -70,4 +70,10 @@ export class MoviePageComponent implements OnInit {
       }
     });
   }
+
+  onRateLikes(liked: boolean) {
+    this.rating = liked ? 4 : 2;
+    this.onRate();
+    this.rating = 0;
+  }
 }

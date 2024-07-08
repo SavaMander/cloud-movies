@@ -28,6 +28,8 @@
                 <input type="number" id="rate-txt" [(ngModel)]="rating" name="rating" min="1" max="5">
                 <button mat-flat-button id="rate-btn" (click)="onRate()">Rate</button>
             </form>
+            <button mat-flat-button id="thumbs-up-btn" (click)="onRateLikes(true)">👍</button>
+            <button mat-flat-button id="thumbs-down-btn" (click)="onRateLikes(false)">👎</button>
             </div>
         </div>
     </div>
